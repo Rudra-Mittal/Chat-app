@@ -2,6 +2,8 @@
 
 Allo-Talk is a real-time chatting application that allows you to connect with anyone on the app. 
 
+
+
 ## Getting Started
 
 To start the project locally, follow these steps:

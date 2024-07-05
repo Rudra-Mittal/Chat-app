@@ -1,4 +1,4 @@
-export const host="http://localhost:3000"
+export const host="http://ec2-3-111-52-246.ap-south-1.compute.amazonaws.com:3000"
 export const signUpRoute=host+"/api/auth/signup"
 export const loginRoute=host+"/api/auth/login"
 export const setLogoRoute=host+"/api/auth/setLogo"

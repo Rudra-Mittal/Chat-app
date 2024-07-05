@@ -41,7 +41,6 @@ export async function login(req,res,next){
             email:email,
         })
         const isSame= await bcrypt.compare(password,user?.password||"")
-        console.log(user);
         if(isSame){
             return res.status(200).json({
                 "user":user,
