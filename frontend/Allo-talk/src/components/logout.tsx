@@ -5,7 +5,9 @@ export default function Logout() {
   const navigate = useNavigate();
   
   const handleClick = async () => {
+    // @ts-ignore
     const id = await JSON.parse(
+      // @ts-ignore
       localStorage.getItem("user")
     )._id;
     

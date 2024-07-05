@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Logo from "../assets/logos.png";
-
+// @ts-ignore
 export default function Contacts({ contacts, changeChat}) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
@@ -8,12 +8,13 @@ export default function Contacts({ contacts, changeChat}) {
 
   useEffect(() => {
     const data = JSON.parse(
+      // @ts-ignore
       localStorage.getItem("user")
     );
     setCurrentUserName(data.username);
     setCurrentUserImage(data.profilePic);
   }, []);
-
+// @ts-ignore
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
@@ -28,7 +29,7 @@ export default function Contacts({ contacts, changeChat}) {
             <h3 className="text-white uppercase">Allo talk</h3>
           </div>
           <div className="flex flex-col items-center gap-3.5 overflow-auto contacts">
-            {contacts.map((contact, index) => (
+            {contacts.map((contact:any, index:any) => (
               <div
                 key={contact._id}
                 className={`contact flex items-center gap-4 p-2.5 w-[90%] min-h-[5rem] cursor-pointer rounded transition-all duration-500 ${

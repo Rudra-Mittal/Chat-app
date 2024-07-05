@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/logos.png";
@@ -26,31 +26,36 @@ export default function Signup() {
     }
   }, []);
 
-  const handleChange = (event) => {
+  const handleChange = (event:any) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
   const handleValidation = () => {
+    // @ts-ignore
     const { password, confirmPassword, username, email } = values;
     if (password !== confirmPassword) {
       toast.error(
         "Password  does not match.",
+        // @ts-ignore
         toastOptions
       );
       return false;
     } else if (username.length < 3) {
       toast.error(
         "Username should be greater than 3 characters.",
+        // @ts-ignore
         toastOptions
       );
       return false;
     } else if (password.length < 3) {
       toast.error(
         "Password should be equal or greater than 8 characters.",
+        // @ts-ignore
         toastOptions
       );
       return false;
     } else if (email === "") {
+       // @ts-ignore
       toast.error("Email is required.", toastOptions);
       return false;
     }
@@ -58,9 +63,10 @@ export default function Signup() {
     return true;
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     if (handleValidation()) {
+       // @ts-ignore
       const { email, username, password } = values;
       console.log(values,signUpRoute);
       const { data } = await axios.post(signUpRoute, {
@@ -70,6 +76,7 @@ export default function Signup() {
         });
         console.log(data);
       if (data.status === false) {
+         // @ts-ignore
         toast.error(data.message, toastOptions);
       }
       else if (data.status === true) {

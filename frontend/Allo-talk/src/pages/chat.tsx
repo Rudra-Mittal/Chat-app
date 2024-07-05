@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import  { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
@@ -21,6 +21,7 @@ export default function Chat() {
     } else {
       setCurrentUser(
         JSON.parse(
+          // @ts-ignore
           localStorage.getItem("user")
         )
       );
@@ -29,14 +30,16 @@ export default function Chat() {
 
   useEffect(() => {
     if (currentUser) {
+      // @ts-ignore
       socket.current = io(host);
-      console.log(currentUser._id);
+      // @ts-ignore
       socket.current.emit("add-user", currentUser._id);
     }
   }, [currentUser]);
 
   useEffect( () => {
     if (currentUser) {
+      // @ts-ignore
       if (currentUser.isProfileSet) {
         axios.get(`${getUsers}`).then((data)=>{
           // console.log(data);
@@ -48,7 +51,7 @@ export default function Chat() {
     }
   }, [currentUser]);
 
-  const handleChatChange = (chat) => {
+  const handleChatChange = (chat:any) => {
     setCurrentChat(chat);
   };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Welcome() {
   const [userName, setUserName] = useState("");
@@ -6,6 +6,7 @@ export default function Welcome() {
   useEffect(() => {
     setUserName(
       JSON.parse(
+        // @ts-ignore
         localStorage.getItem("user")
       ).username
     );

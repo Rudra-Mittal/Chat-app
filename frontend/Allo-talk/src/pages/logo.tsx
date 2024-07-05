@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axios from "axios";
-import { Buffer } from "buffer";
 import Loader from "../assets/loader.tsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,7 +8,6 @@ import { setLogoRoute } from "../utils/authRoute";
 import { createAvatar } from '@dicebear/core';
 import { lorelei } from '@dicebear/collection';
 export default function SetLogo() {
-  const api = `https://robohash.org/robot`;
   const navigate = useNavigate();
   const [Logos, setLogos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +23,7 @@ export default function SetLogo() {
   useEffect(() => {
     if (!localStorage.getItem("user"))
       navigate("/login");
+    // @ts-ignore
     else if(JSON.parse(localStorage.getItem("user")).isProfileSet){
       navigate("/");
     }
@@ -32,6 +31,7 @@ export default function SetLogo() {
 
   const setProfilePicture = async () => {
     if (selectedLogo === undefined) {
+      // @ts-ignore
       toast.error("Please select an Logo", toastOptions);
     } else {
       const user = await JSON.parse(
@@ -51,6 +51,7 @@ export default function SetLogo() {
         );
         navigate("/");
       } else {
+        // @ts-ignore
         toast.error("Error setting Logo. Please try again.", toastOptions);
       }
     }
@@ -69,6 +70,7 @@ export default function SetLogo() {
         // console.log(svg); 
         logos.push(svg);
       }
+      // @ts-ignore
       setLogos(logos);
       setIsLoading(false);
     };
@@ -94,6 +96,7 @@ export default function SetLogo() {
                 className={`p-2 rounded-full transition-all duration-500 ${
                   selectedLogo === index ? "border-4 border-[#4e0eff]" : "border-4 border-transparent"
                 }`}
+                // @ts-ignore
                 onClick={() => setSelectedLogo(index)}
               >
                 <img

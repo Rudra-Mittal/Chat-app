@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import Picker from "emoji-picker-react";
-
+// @ts-ignore
 export default function ChatInput({ handleSendMsg }) {
   const [msg, setMsg] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -10,7 +10,7 @@ export default function ChatInput({ handleSendMsg }) {
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
-
+// @ts-ignore
   const handleEmojiClick = (event, emojiObject) => {
     // console.log(event);
     let message = msg;
@@ -18,7 +18,7 @@ export default function ChatInput({ handleSendMsg }) {
     setMsg(message);
   };
 
-  const sendChat = (event) => {
+  const sendChat = (event:any) => {
     event.preventDefault();
     if (msg.length > 0) {
       handleSendMsg(msg);
