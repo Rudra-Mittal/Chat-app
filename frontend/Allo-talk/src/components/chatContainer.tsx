@@ -41,7 +41,7 @@ export default function ChatContainer({ currentChat, socket }) {
       // @ts-ignore
       localStorage.getItem("user")
     );
-    console.log(message);
+    // console.log(message);
     socket.current.emit("send-message", {
       receiver: currentChat._id,
       sender: data._id,
@@ -55,16 +55,15 @@ export default function ChatContainer({ currentChat, socket }) {
     });
     const msgs = [...messages];
     // @ts-ignore
-    msgs.push({ fromSelf: true, message: message });
+    msgs.push({ fromSelf: true, message: message, createdAt: new Date()});
     setMessages(msgs);
   };
 
   useEffect(() => {
     if (socket.current) {
       socket.current.on("receive-message", (message:any) => {
-        console.log(message); 
         // @ts-ignore
-        setArrivalMessage({ fromSelf: false, message });
+        setArrivalMessage({ fromSelf: false, message, createdAt: new Date()});
       });
     }
   }, []);
@@ -112,7 +111,14 @@ export default function ChatContainer({ currentChat, socket }) {
                     message.fromSelf ? "bg-[#4f04ff21]" : "bg-[#9900ff20]"
                   }`}
                 >
-                  <p>{(message)?message:""}</p>
+                  <p>{
+                    // @ts-ignore
+                  (message)?message.message:""}</p>
+                  <p className="text-xs text-[#d1d1d1] mt-2">
+      {
+        // @ts-ignore
+      (message)?new Date(message.createdAt).toLocaleString():""}
+    </p>
                 </div>
               </div>
             </div>

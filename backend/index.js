@@ -9,7 +9,7 @@ import { Server, Socket, Server as SocketIOServer } from 'socket.io';
 dotenv.config();
 const app=express();
 app.use(cors({
-    origin:["https://allo-talk.devrudra.site"],
+    origin:["https://allo-talk.devrudra.site","http://localhost:5173"],
     credentials:true
 }));
 app.use(express.json());
@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_CLOUD_URL,{
 const server = http.createServer(app);
 const io= new Server(server,{
     cors:{
-        origin:"https://allo-talk.devrudra.site",
+        origin:["https://allo-talk.devrudra.site","http://localhost:5173"],
         methods: ["GET", "POST"],
         credentials:true
     }
