@@ -13,9 +13,9 @@ export default function Welcome() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center text-white h-full">
+    <div className=" -z-50 flex flex-col items-center justify-center text-white h-full">
       {/* <img src={Robot} alt="" className="h-80" /> */}
-      <h1 className="text-2xl">
+      <h1 className="text-2xl -z-50">
         Welcome, <span className="text-[#4e0eff]">{userName}!</span>
       </h1>
       <h3 className="text-lg mt-2">Please select a chat to start messaging.</h3>

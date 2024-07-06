@@ -11,6 +11,7 @@ export async function sendMessage(req,res,next){
         return res.status(201).json({
             message:newMessage,
             message:'Message sent successfully',
+            
             status:true
         })
     }catch(error){

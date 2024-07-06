@@ -57,26 +57,26 @@ export default function SetLogo() {
     }
   };
 
+  const fetchLogos = async () => {
+    const logos = [];
+    for (let i = 0; i < 4; i++) {
+      const randString = Math.floor(Math.random()*1000).toString()
+      const res= createAvatar(lorelei,{
+        seed:randString,
+      })
+      const svg=res.toDataUri();
+      // console.log(typeof(svg));
+      // console.log(svg); 
+      logos.push(svg);
+    }
+    // @ts-ignore
+    setLogos(logos);
+    setIsLoading(false);
+  };
   useEffect(() => {
-    const fetchLogos = async () => {
-      const logos = [];
-      for (let i = 0; i < 4; i++) {
-        const randString = Math.floor(Math.random()*1000).toString()
-        const res= createAvatar(lorelei,{
-          seed:randString,
-        })
-        const svg=res.toDataUri();
-        // console.log(typeof(svg));
-        // console.log(svg); 
-        logos.push(svg);
-      }
-      // @ts-ignore
-      setLogos(logos);
-      setIsLoading(false);
-    };
-
     fetchLogos();
   }, []);
+
 
   return (
     <>
@@ -89,7 +89,7 @@ export default function SetLogo() {
           <div className="text-center text-white">
             <h1>Pick an Logo as your profile picture</h1>
           </div>
-          <div className="flex gap-8">
+          <div className="flex gap-8 grid grid-cols-2 md:grid-cols-4">
             {Logos.map((Logo, index) => (
               <div
                 key={index}
@@ -112,6 +112,12 @@ export default function SetLogo() {
             className="px-8 py-4 font-bold text-white uppercase bg-[#4e0eff] rounded-lg cursor-pointer hover:bg-[#3c0bcc]"
           >
             Set as Profile Picture
+          </button>
+          <button
+            onClick={fetchLogos}
+            className="px-8 py-4 font-bold text-white uppercase bg-[#4e0eff] rounded-lg cursor-pointer hover:bg-[#3c0bcc]"
+          >
+            Generate more Logos
           </button>
           <ToastContainer />
         </div>

@@ -19,7 +19,7 @@ export default function ChatContainer({ currentChat, socket }) {
       sender: data._id,
       receiver: currentChat._id,
     }).then((response)=>{
-      console.log(response);
+      // console.log(response);
       setMessages(response.data.messages);
     })
   }, [currentChat]);
@@ -44,6 +44,8 @@ export default function ChatContainer({ currentChat, socket }) {
     // console.log(message);
     socket.current.emit("send-message", {
       receiver: currentChat._id,
+      username: data.username,
+      image: data.profilePic,
       sender: data._id,
       message,
     });
@@ -58,12 +60,35 @@ export default function ChatContainer({ currentChat, socket }) {
     msgs.push({ fromSelf: true, message: message, createdAt: new Date()});
     setMessages(msgs);
   };
-
+  useEffect(() => {
+    // Request notification permission on component mount
+    requestNotificationPermission();
+  }, []);
+  const requestNotificationPermission = async () => {
+    if (!("Notification" in window)) {
+      // console.log("This browser does not support notifications.");
+    } else {
+      await Notification.requestPermission();
+    }
+  };
+  const showNotification = (title:string, body:string, image:string) => {
+    if (Notification.permission === "granted") {
+      new Notification(title, {
+        body: body,
+        icon: image
+        // You can add more options here, like icon
+      });
+    }
+  };
   useEffect(() => {
     if (socket.current) {
       socket.current.on("receive-message", (message:any) => {
+        const msg=message.message;
+        
+        // console.log(msg);
         // @ts-ignore
-        setArrivalMessage({ fromSelf: false, message, createdAt: new Date()});
+        setArrivalMessage({fromSelf: false,message:msg , createdAt: new Date()});
+        showNotification(message.username, msg, message.image);
       });
     }
   }, []);
@@ -83,7 +108,7 @@ export default function ChatContainer({ currentChat, socket }) {
         <div className="flex items-center gap-4">
           <div className="avatar">
             <img
-              src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
+              src={`${currentChat.profilePic}`}
               alt=""
               className="h-12"
             />

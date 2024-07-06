@@ -23,27 +23,28 @@ export default function ChatInput({ handleSendMsg }) {
     if (msg.length > 0) {
       handleSendMsg(msg);
       setMsg("");
+      setShowEmojiPicker(false);
     }
   };
 
   return (
     <div className="grid items-center grid-cols-[5%_95%] bg-[#080420] p-8 md:p-4 gap-4">
       <div className="flex items-center text-white gap-4">
-        <div className="relative">
-          <BsEmojiSmileFill
-            onMouseEnter={handleEmojiPickerhideShow}
-            onClick={handleEmojiPickerhideShow}
-            className="text-2xl text-yellow-400 cursor-pointer"
-          />
+        <div className="relative ">
           {showEmojiPicker && (
-            <div onMouseLeave={handleEmojiPickerhideShow} className="absolute top-[-410px] bg-[#080420] shadow-md border border-purple-400">
+            <div className="absolute bottom-11  bg-[#080420] shadow-md  border border-purple-400">
               <Picker onEmojiClick={handleEmojiClick} />
             </div>
           )}
+          <BsEmojiSmileFill
+            // onMouseEnter={handleEmojiPickerhideShow}
+            onClick={handleEmojiPickerhideShow}
+            className="text-2xl text-yellow-400 cursor-pointer"
+          />
         </div>
       </div>
       <form
-        className="flex items-center  w-full bg-[#ffffff34] rounded-2xl gap-4 mb-3 pb-3"
+        className="flex items-center w-full bg-[#ffffff34] rounded-2xl gap-4 mb-3 pb-3"
         onSubmit={sendChat}
       >
         <input
@@ -53,7 +54,7 @@ export default function ChatInput({ handleSendMsg }) {
           value={msg}
           className="w-full h-10 bg-transparent text-white border-none px-4 text-lg placeholder-white focus:outline-none"
         />
-        <button type="submit" className="flex items-center bg-purple-400 rounded-2xl px-4 py-2">
+        <button type="submit" className="flex items-center bg-purple-400 rounded-2xl px-4 mt-2 mr-2 py-2">
           <IoMdSend className="text-2xl text-white" />
         </button>
       </form>

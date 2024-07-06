@@ -37,11 +37,14 @@ io.on('connection',(socket)=>{
         onlineUsers.set(userId,socket.id)
     })
     socket.on("send-message",(data)=>{
-        const {receiver,message}= data
+        const {receiver,message,image,username}= data
         const receiverSocketId= onlineUsers.get(receiver)
         if(receiverSocketId){
-            socket.to(receiverSocketId).emit('receive-message',
-                message
+            socket.to(receiverSocketId).emit('receive-message',{
+                message,
+                image,
+                username
+            }
             )
         }
         

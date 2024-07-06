@@ -23,7 +23,7 @@ export default function Contacts({ contacts, changeChat}) {
   return (
     <>
       {currentUserImage && currentUserName && (
-        <div className="grid grid-rows-[10%_75%_15%] overflow-hidden bg-[#080420]">
+        <div className="grid grid-rows-[10%_75%_15%] overflow-hidden bg-[#080420] ">
           <div className="flex items-center justify-center gap-4 brand">
             <img src={Logo} alt="logo" className="h-8" />
             <h3 className="text-white uppercase">Allo talk</h3>
