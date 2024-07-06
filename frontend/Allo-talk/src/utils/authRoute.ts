@@ -1,4 +1,4 @@
-export const host="http://localhost:3000"
+export const host="https://backend.devrudra.site"
 export const signUpRoute=host+"/api/auth/signup"
 export const loginRoute=host+"/api/auth/login"
 export const setLogoRoute=host+"/api/auth/setLogo"
