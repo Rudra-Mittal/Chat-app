@@ -58,6 +58,7 @@ export default function Chat() {
 
   const handleChatChange = (chat:any) => {
     // console.log(chat);
+    toggleContacts();
     setCurrentChat(chat);
   };
 
