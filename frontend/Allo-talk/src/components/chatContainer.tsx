@@ -131,12 +131,12 @@ export default function ChatContainer({ currentChat, socket }) {
                   className={`content p-4 text-lg rounded-lg text-[#d1d1d1] break-words ${
                     // @ts-ignore
                     message.fromSelf ? "bg-[#4f04ff21]" : "bg-[#9900ff20]"
-                  }`}
+                  } preserve-whitespace` }
                 >
                   
                   <div dangerouslySetInnerHTML={
                     // @ts-ignore
-                    {__html:message?escapeHtml(message.message).replace(/\n/g,'<br>').replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"):""}}></div>
+                    {__html:message?escapeHtml(message.message).replace(/\n/g,'<br>').replace(/\t/g,"      "):""}}></div>
                   <p className="text-xs text-[#d1d1d1] mt-2">
       {
         // @ts-ignore

@@ -5,3 +5,6 @@
 svg{
     height: 100%;
 }
+.preserve-whitespace {
+    white-space: pre-wrap; /* CSS property to preserve whitespace and wrap text */
+  }
