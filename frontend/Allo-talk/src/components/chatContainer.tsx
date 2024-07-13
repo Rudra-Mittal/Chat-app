@@ -9,7 +9,6 @@ export default function ChatContainer({ currentChat, socket }) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
-
   useEffect(() => {
     const data = JSON.parse(
       // @ts-ignore
@@ -84,8 +83,6 @@ export default function ChatContainer({ currentChat, socket }) {
     if (socket.current) {
       socket.current.on("receive-message", (message:any) => {
         const msg=message.message;
-        
-        // console.log(msg);
         // @ts-ignore
         setArrivalMessage({fromSelf: false,message:msg , createdAt: new Date()});
         showNotification(message.username, msg, message.image);
@@ -136,9 +133,10 @@ export default function ChatContainer({ currentChat, socket }) {
                     message.fromSelf ? "bg-[#4f04ff21]" : "bg-[#9900ff20]"
                   }`}
                 >
-                  <p>{
+                  
+                  <div dangerouslySetInnerHTML={
                     // @ts-ignore
-                  (message)?message.message:""}</p>
+                    {__html:message?message.message.replace(/\n/g,'<br>').replace(/\t/g,"&nbsp;&nbsp;&nbsp;"):""}}></div>
                   <p className="text-xs text-[#d1d1d1] mt-2">
       {
         // @ts-ignore

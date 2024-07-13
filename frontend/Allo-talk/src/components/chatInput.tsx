@@ -43,7 +43,7 @@ export default function ChatInput({ handleSendMsg }) {
           />
         </div>
       </div>
-      <form
+      <form onKeyDown={(e) => e.key === "Enter" && sendChat(e)}
         className="flex items-center w-full bg-[#ffffff34] rounded-2xl gap-4 mb-3 pb-3"
         onSubmit={sendChat}
       >
@@ -51,8 +51,8 @@ export default function ChatInput({ handleSendMsg }) {
           placeholder="Type your message here"
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
-          className="w-full h-10 bg-transparent text-white border-none px-4 text-lg placeholder-white focus:outline-none resize-none"
-          rows={2}
+          className="w-full h-fit-content bg-transparent text-white border-none px-4 text-lg placeholder-white focus:outline-none resize-none"
+          rows={1}
         ></textarea>
         <button type="submit" className="flex items-center bg-purple-400 rounded-2xl px-4 mt-2 mr-2 py-2">
           <IoMdSend className="text-2xl text-white" />
