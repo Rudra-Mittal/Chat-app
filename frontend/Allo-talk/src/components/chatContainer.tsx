@@ -136,7 +136,7 @@ export default function ChatContainer({ currentChat, socket }) {
                   
                   <div dangerouslySetInnerHTML={
                     // @ts-ignore
-                    {__html:message?escapeHtml(message.message).replace(/\n/g,'<br>').replace(/\t/g,"&nbsp;&nbsp;&nbsp;"):""}}></div>
+                    {__html:message?escapeHtml(message.message).replace(/\n/g,'<br>').replace(/\t/g,"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"):""}}></div>
                   <p className="text-xs text-[#d1d1d1] mt-2">
       {
         // @ts-ignore
