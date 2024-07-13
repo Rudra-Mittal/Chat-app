@@ -128,7 +128,7 @@ export default function ChatContainer({ currentChat, socket }) {
                 } w-full`}
               >
                 <div
-                  className={`content max-w-[40%] p-4 text-lg rounded-lg text-[#d1d1d1] break-words ${
+                  className={`content p-4 text-lg rounded-lg text-[#d1d1d1] break-words ${
                     // @ts-ignore
                     message.fromSelf ? "bg-[#4f04ff21]" : "bg-[#9900ff20]"
                   }`}
