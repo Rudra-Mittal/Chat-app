@@ -47,13 +47,13 @@ export default function ChatInput({ handleSendMsg }) {
         className="flex items-center w-full bg-[#ffffff34] rounded-2xl gap-4 mb-3 pb-3"
         onSubmit={sendChat}
       >
-        <input
-          type="text"
+        <textarea
           placeholder="Type your message here"
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
-          className="w-full h-10 bg-transparent text-white border-none px-4 text-lg placeholder-white focus:outline-none"
-        />
+          className="w-full h-10 bg-transparent text-white border-none px-4 text-lg placeholder-white focus:outline-none resize-none"
+          rows="2"
+        ></textarea>
         <button type="submit" className="flex items-center bg-purple-400 rounded-2xl px-4 mt-2 mr-2 py-2">
           <IoMdSend className="text-2xl text-white" />
         </button>
